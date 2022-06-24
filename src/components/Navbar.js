@@ -15,7 +15,7 @@ const Navbar = () => {
 
     const menuItems = <>
         <li ><Link className='btn-sm btn-primary bg-transparent font-bold' to="/">Home</Link></li>
-        <li ><Link className='btn-sm btn-primary bg-transparent font-bold lg:ml-5 ml-0' to="/contact">Contact</Link></li>
+        {/* <li ><Link className='btn-sm btn-primary bg-transparent font-bold lg:ml-5 ml-0' to="/contact">Contact</Link></li> */}
         <li >{user
             ? <Link
                 to=''

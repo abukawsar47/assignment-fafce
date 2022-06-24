@@ -1,9 +1,9 @@
 import { Route, Routes } from "react-router-dom";
-// import Footer from "./components/Footer";
+import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import RequireAuth from "./components/RequireAuth";
 import NotFound from "./NotFound";
-import Contact from "./pages/Contact";
+// import Contact from "./pages/Contact";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
@@ -20,17 +20,17 @@ function App() {
               <Home />
             </RequireAuth>
           }></Route>
-          <Route path="/contact" element={
+          {/*    <Route path="/contact" element={
             <RequireAuth>
               <Contact />
             </RequireAuth>
-          }></Route>
+          }></Route> */}
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<SignUp />} />
           <Route path='*' element={<NotFound />}></Route>
         </Routes>
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-// import InfiniteScroll from 'react-infinite-scroll-component';
 
 const Contact = () => {
     let offset = 0;
@@ -35,15 +34,13 @@ const Contact = () => {
 
     return (
 
-        <div className='min-h-fit'>
+        <div className='min-h-[95vh]'>
             <div className="lg:w-96 max-w-56 mx-auto">
                 <div className="overflow-x-auto shadow-2xl">
                     <h2 className='font-bold lg:text-3xl text-primary px-5 py-2'>All Contacts</h2>
 
                     <div className='px-5'>
                         {/* <div className='px-5 overflow-scroll h-96'> */}
-                        {/* -----Infinity Scroll----- */}
-                        {/* -----Infinity Scroll----- */}
                         {data &&
                             data.map((contact, index) => <div
                                 key={index}
