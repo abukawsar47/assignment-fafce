@@ -10,7 +10,7 @@ const Contact = () => {
         fetch(`https://randomuser.me/api/?results=10&offset=${offset}`)
             .then(res => res.json())
             .then(data => {
-                setContacts(...data)
+                setContacts(data)
                 console.log(data);
             })
         offset += 10;

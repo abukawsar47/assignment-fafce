@@ -1,12 +1,11 @@
-import { async } from '@firebase/util';
 import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 const Contacts = () => {
     const [contacts, setContacts] = useState([]);
-    const [items, setItems] = useState([]);
+    // const [items, setItems] = useState([]);
     const [noMore, setNoMore] = useState(true);
-    const [page, setPage] = useState(50);
+    const [page, setPage] = useState(100);
     const [persons, setPersons] = useState([]);
 
     useEffect(() => {
@@ -20,30 +19,33 @@ const Contacts = () => {
     }, [])
 
     const abu = async () => {
-        await fetch(`https://randomuser.me/api/?results=${page}`)
-            .then(res => res.json())
+
+        const res = await fetch(`https://randomuser.me/api/?results=${page}`)
+        const data = await res.json()
+        return data;
+        /*     .then(res => res.json())
             .then(data => {
                 setItems(data)
+                // setPersons(Object.values(data)[0])
                 console.log(data);
-            })
+            }) */
     }
 
-
-
-    let data = Object.values(contacts)[0]
+    // let data = Object.values(contacts)[0]
     // console.log(data);
 
     /*     if (data) {
             setItems(data)
         } */
 
-    const fetchMoreData = () => {
-        setPersons(Object.values(items)[0])
-        abu()
-        setPage(page + 50)
-        if (page >= 500) {
+    const fetchMoreData = async () => {
+        const newData = await abu();
+        console.log(newData);
+        setPersons(Object.values(newData)[0])
+        if (persons.length === 450 || persons.length > 450) {
             setNoMore(false)
         }
+        setPage(page + 50)
     }
 
 
@@ -54,16 +56,18 @@ const Contacts = () => {
                 <div className="overflow-x-auto shadow-2xl">
                     <h2 className='font-bold lg:text-3xl text-primary px-5 py-2'>All Contacts</h2>
 
-                    <div className='px-5 overflow-scroll h-96'>
+                    <div className='px-5'>
+                        {/* <div className='px-5 overflow-scroll h-96'> */}
                         {/* -----Infinity Scroll----- */}
                         <InfiniteScroll
                             dataLength={persons?.length}
                             next={fetchMoreData}
                             //To put endMessage and loader to the top.
-                            inverse={true}
+                            // inverse={true}
                             hasMore={noMore}
                             loader={<h4 className='text-center'>Loading...</h4>}
-                            scrollableTarget="scrollableDiv"
+                            endMessage={<h4 className='text-center'>No More Data</h4>}
+                        // scrollableTarget="scrollableDiv"
                         >
                             {persons.map((contact, index) => (
                                 <div key={index}>
